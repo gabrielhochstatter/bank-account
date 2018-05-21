@@ -1,7 +1,4 @@
 require 'transaction'
-require 'money'
-
-# HELLO COACHES, ARE YOU REALLY CHECKING OUR OLD COMMITS ¯\_(ツ)_/¯ ?
 
 describe Transaction do
   let(:balance) { double(:final_balance, format: '$10.00')}
