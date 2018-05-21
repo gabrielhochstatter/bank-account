@@ -1,4 +1,5 @@
 require 'money'
+require_relative 'transaction'
 Money.use_i18n = false
 
 class Account

@@ -13,7 +13,9 @@ and the date and time of the transaction.
 
 #### Methods
 
-`#withdraw` this method withdraws the amount passed as an argument from `@balance`
+`#withdraw`
+
+this method withdraws the amount passed as an argument from `@balance`
 
 
 
