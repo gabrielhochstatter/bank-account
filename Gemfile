@@ -2,6 +2,8 @@
 
 source 'https://rubygems.org'
 
+gem 'money'
+
 group :development, :test do
   gem 'rspec'
   gem 'rubocop'

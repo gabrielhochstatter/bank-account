@@ -1,17 +1,22 @@
+require 'money'
+Money.use_i18n = false
+
 class Account
   attr_reader :balance
 
   def initialize
-    @balance = 0
+    @balance = Money.new(0)
   end
 
   def deposit(amount)
-    @balance += amount
-    puts "$#{amount} deposited! Your balance is now: $#{@balance}"
+    deposit_amount = Money.new((amount * 100).to_i)
+    @balance += deposit_amount
+    puts "#{deposit_amount} deposited! Your balance is now: $#{@balance}"
   end
 
   def withdraw(amount)
-    @balance -= amount
-    puts "$#{amount} withdrawn! Your balance is now: $#{@balance}"
+    withdrawal_amount = Money.new((amount * 100).to_i)
+    @balance -= withdrawal_amount
+    puts "$#{withdrawal_amount} withdrawn! Your balance is now: $#{@balance}"
   end
 end
