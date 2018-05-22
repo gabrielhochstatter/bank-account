@@ -26,9 +26,9 @@ describe Transaction do
 
   describe '#final_balance' do
     it 'stores the balance of the account after the transaction' do
-      balance = Money.new(10000)
+      balance = Money.new(1000)
       transaction = Transaction.new(:deposit, balance)
-      expect(transaction.final_balance).to eq('$100.00')
+      expect(transaction.final_balance).to eq('$10.00')
     end
   end
 
