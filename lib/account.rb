@@ -1,7 +1,7 @@
 require 'money'
-require 'terminal-table'
 require_relative 'transaction'
 require_relative 'statement'
+require_relative 'printer'
 Money.use_i18n = false
 
 class Account
@@ -20,12 +20,12 @@ class Account
   def withdraw(amount)
     withdrawal_amount = money(amount)
     @balance -= withdrawal_amount
-    @statement.add_transaction(:withdrawal, @balance, -withdrawal_amount)
+    @statement.add_transaction(:withdrawal, @balance, withdrawal_amount)
   end
 
-  # def print_statement
-  #   @statement.print_statement
-  # end
+  def print_statement
+    Printer.print_statement(@statement)
+  end
 
   private
 
