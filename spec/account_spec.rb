@@ -1,7 +1,6 @@
 require 'account'
 
 describe Account do
-  # subject(:account) { described_class.new }
   before(:each) do
     @account = Account.new
   end
@@ -18,12 +17,6 @@ describe Account do
       expect{@account.deposit(50.00)}.to change{@account.balance.fractional}.by(5000)
     end
 
-    it 'creates a relevant transaction object and places it in the statement' do
-      @account.deposit(50.00)
-      expect(@account.statement[0]).to be_a(Transaction)
-      expect(@account.statement[0].change).to eq("$50.00")
-      expect(@account.statement[0].final_balance).to eq("$50.00")
-    end
   end
 
   describe '#withdraw' do
@@ -32,37 +25,8 @@ describe Account do
       expect{@account.withdraw(10.00)}.to change{@account.balance.fractional}.by(-1000)
     end
 
-    it 'creates a relevant transaction object and places it in the statement' do
-      @account.deposit(50.00)
-      @account.withdraw(10.00)
-      expect(@account.statement[1]).to be_a(Transaction)
-      expect(@account.statement[1].change).to eq("$-10.00")
-      expect(@account.statement[1].final_balance).to eq("$40.00")
-    end
   end
 
-  describe '#print_statement' do
-    it 'populates the array for the terminal-table gem correctly' do
-      @account.deposit(50.00)
-      expected_array = [
-        ["Date", "Change", "Balance"],
-         [Time.now.strftime("%D"), "$50.00", "$50.00"]
-       ]
-       @account.print_statement
-      expect(@account.statement_table_array).to eq expected_array
-    end
 
-    it 'populates the array correctly for multiple transactions' do
-      @account.deposit(50.00)
-      @account.withdraw(25.00)
-      expected_array = [
-        ["Date", "Change", "Balance"],
-         [Time.now.strftime("%D"), "$50.00", "$50.00"],
-         [Time.now.strftime("%D"), "$-25.00", "$25.00"]
-       ]
-       @account.print_statement
-      expect(@account.statement_table_array).to eq expected_array
-    end
-  end
 
 end
