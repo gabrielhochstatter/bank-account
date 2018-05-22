@@ -23,6 +23,5 @@ describe Account do
       @account.deposit(50.00)
       expect{@account.withdraw(10.00)}.to change{@account.balance.fractional}.by(-1000)
     end
-
   end
 end

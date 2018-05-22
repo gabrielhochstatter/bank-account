@@ -18,8 +18,8 @@ describe Statement do
     it 'populates the array for the terminal-table gem correctly' do
       @statement.add_transaction(:deposit, Money.new(5000), Money.new(5000))
       expected_array = [
-        %w[Date Change Balance],
-        [Time.now.strftime('%D'), '$50.00', '$50.00']
+        %w[Date Deposited Withdrawn Balance],
+        [Time.now.strftime('%D'), '$50.00', '', '$50.00']
       ]
       @statement.print_statement
       expect(@statement.table_array).to eq expected_array
@@ -29,9 +29,9 @@ describe Statement do
       @statement.add_transaction(:deposit, Money.new(5000), Money.new(5000))
       @statement.add_transaction(:withdrawal, Money.new(2500), -Money.new(2500))
       expected_array = [
-        %w[Date Change Balance],
-        [Time.now.strftime('%D'), '$-25.00', '$25.00'],
-        [Time.now.strftime('%D'), '$50.00', '$50.00']
+        %w[Date Deposited Withdrawn Balance],
+        [Time.now.strftime('%D'), '', '$-25.00', '$25.00'],
+        [Time.now.strftime('%D'), '$50.00', '', '$50.00']
       ]
       @statement.print_statement
       expect(@statement.table_array).to eq expected_array

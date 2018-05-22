@@ -6,7 +6,7 @@ class Statement
 
   def initialize
     @transactions = []
-    @table_array = [%w[Date Change Balance]]
+    @table_array = [%w[Date Deposited Withdrawn Balance]]
   end
 
   def add_transaction(type, final_balance, change)
@@ -24,7 +24,13 @@ class Statement
     @transactions.each do |transaction|
       transaction_array = []
       transaction_array << transaction.time.strftime('%D')
-      transaction_array << transaction.change
+      if transaction.type == :deposit
+        transaction_array << transaction.change
+        transaction_array << ''
+      else
+        transaction_array << ''
+        transaction_array << transaction.change
+      end
       transaction_array << transaction.final_balance
       @table_array.insert(1, transaction_array)
     end
