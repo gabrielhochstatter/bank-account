@@ -33,9 +33,8 @@ class Account
 
   private
 
-
-  def money(amount) # converts amount in float or integer into Money object
+  # converts amount in float or integer into Money object
+  def money(amount)
     Money.new((amount * 100).to_i)
   end
-
 end

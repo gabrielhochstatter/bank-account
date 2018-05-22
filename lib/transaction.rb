@@ -10,5 +10,4 @@ class Transaction
     @final_balance = final_balance.format
     @type = type
   end
-
 end

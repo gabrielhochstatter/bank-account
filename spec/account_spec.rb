@@ -16,7 +16,6 @@ describe Account do
     it 'adds the amount passed as an argument to the balance' do
       expect{@account.deposit(50.00)}.to change{@account.balance.fractional}.by(5000)
     end
-
   end
 
   describe '#withdraw' do
@@ -26,7 +25,4 @@ describe Account do
     end
 
   end
-
-
-
 end
