@@ -2,14 +2,14 @@ require 'printer'
 
 describe Printer do
   let(:transaction_1) {
-    double(:transaction, time: "31/12/2017",
+    double(:transaction, date: "31/12/2017",
       change: Money.new(10000),
       final_balance: Money.new(10000),
       type: :deposit
     )
   }
   let(:transaction_2) {
-    double(:transaction, time: "01/01/2018",
+    double(:transaction, date: "01/01/2018",
       change: Money.new(1000),
       final_balance: Money.new(9000),
       type: :withdrawal

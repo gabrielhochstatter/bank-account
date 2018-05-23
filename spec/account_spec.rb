@@ -2,7 +2,11 @@ require 'account'
 
 describe Account do
   before(:each) do
-    @account = Account.new
+    @statement = double(:statement)
+    allow(@statement).to receive(:add_transaction)
+    @printer = double(:printer)
+    allow(@printer).to receive(:print_statement)
+    @account = Account.new(@statement, @printer)
   end
 
   describe '#initialize' do
@@ -18,6 +22,11 @@ describe Account do
         @account.deposit(50.00)
       }.to change { @account.balance.fractional }.by(5000)
     end
+
+    it 'calls add_transaction on statement with correct arguments' do
+      expect(@statement).to receive(:add_transaction).with(:deposit, Money.new(100), Money.new(100))
+      @account.deposit(1.00)
+    end
   end
 
   describe '#withdraw' do
@@ -26,6 +35,18 @@ describe Account do
       expect {
         @account.withdraw(10.00)
       }.to change { @account.balance.fractional }.by(-1000)
+    end
+
+    it 'calls add_transaction on statement with correct arguments' do
+      expect(@statement).to receive(:add_transaction).with(:withdrawal, Money.new(0), Money.new(0))
+      @account.withdraw(0)
+    end
+  end
+
+  describe '#print_statement' do
+    it 'calls #print_statement on the printer class' do
+      expect(@printer).to receive(:print_statement).with(@statement)
+      @account.print_statement
     end
   end
 end

@@ -6,9 +6,10 @@ Money.use_i18n = false
 
 class Account
   attr_reader :balance, :statement
-  def initialize
+  def initialize(statement = Statement.new, printer_class = Printer)
     @balance = Money.new(0)
-    @statement = Statement.new
+    @statement = statement
+    @printer_class = printer_class
   end
 
   def deposit(amount)
@@ -24,7 +25,7 @@ class Account
   end
 
   def print_statement
-    Printer.print_statement(@statement)
+    @printer_class.print_statement(@statement)
   end
 
   private
