@@ -16,12 +16,14 @@ class Account
     deposit_amount = money(amount)
     @balance += deposit_amount
     @statement.add_transaction(:deposit, @balance, deposit_amount)
+    return @balance
   end
 
   def withdraw(amount)
     withdrawal_amount = money(amount)
     @balance -= withdrawal_amount
     @statement.add_transaction(:withdrawal, @balance, withdrawal_amount)
+    return @balance
   end
 
   def print_statement
